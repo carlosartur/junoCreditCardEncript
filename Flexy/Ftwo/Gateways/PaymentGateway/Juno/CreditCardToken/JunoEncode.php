@@ -13,7 +13,7 @@ class JunoEncode
      * @param array $toEncode
      * @return string
      */
-    public function doEncode(array $toEncode)
+    public static function doEncode(array $toEncode)
     {
         $base64 = '';
         for ($i = 0; $i < count($toEncode); $i = $i + 3) {
@@ -38,5 +38,32 @@ class JunoEncode
             $base64 = substr($base64, 0, strlen($base64) - 2) . "==";
         }
         return $base64;
+    }
+
+    /**
+     * @return string
+     */
+    public static function base64($cardDataString)
+    {
+        $array = [];
+        for ($i = 0; $i < strlen($cardDataString); $i++) {
+            $array[] = self::getUtf8CharCode($cardDataString[$i]);
+        }
+        // return json_encode($array);
+        $encoded = self::doEncode($array);
+        return $encoded;
+    }
+
+    /**
+     * @param string $string
+     * @return integer
+     */
+    public static function getUtf8CharCode($string)
+    {
+        try {
+            return unpack('V', iconv('UTF-8', 'UCS-4LE', $string))[1];
+        } catch (\Exception $exeption) {
+            return 0;
+        }
     }
 }

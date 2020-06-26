@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::any('/token', 'CreditCardController@token')->name('get.token');
+Route::any('/get-public-encryption-key.json', 'CreditCardController@getPubKey')->name('get.public.key');
+Route::any('/get-credit-card-hash.json', 'CreditCardController@cardHash')->name('get.token.juno');

@@ -20,8 +20,9 @@ class DirectCheckout
     public function encryptCreditCard()
     {
         $crypted = '';
-        openssl_public_encrypt($this->creditCard->stringDataEncode(), $crypted, $this->publicKey, OPENSSL_PKCS1_OAEP_PADDING);
-        return $crypted;
+        openssl_public_encrypt((string) $this->creditCard, $crypted, $this->publicKey, OPENSSL_PKCS1_OAEP_PADDING);
+        $encoded = base64_encode($crypted);
+        return $encoded;
     }
 
     /**

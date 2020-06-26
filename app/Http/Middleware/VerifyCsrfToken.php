@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        "get-public-encryption-key.json",
+        "get-credit-card-hash.json"
     ];
 }

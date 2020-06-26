@@ -192,11 +192,13 @@
     <script src="{{ asset('js/producao.min.js') }}"></script>
     {{-- <script src="{{ asset('js/sandbox.min.js') }}"></script> --}}
     <script>
+        var checkout = new DirectCheckout($("#public-token").val(), false);
+        var creditCardStr = '{"cardNumber":"5555666677778884","holderName":"Carlos Artur Neubert Gonçalves","securityCode":"951","expirationMonth":"1","expirationYear":"2021"}';
         $(function() {
             $("#testar").click(function() {
 
                 if ($("#execJs").is(":checked")) {
-                    var checkout = new DirectCheckout($("#public-token").val(), false);
+                    // var checkout = new DirectCheckout($("#public-token").val(), false);
                     /* Em sandbox utilizar o construtor new DirectCheckout('PUBLIC_TOKEN', false); */
                     var cardData = {
                         cardNumber: $("#card_number").val(),

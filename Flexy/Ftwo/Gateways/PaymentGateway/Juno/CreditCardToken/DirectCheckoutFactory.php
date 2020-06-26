@@ -154,9 +154,11 @@ class DirectCheckoutFactory
             $this->createDirectCheckout();
         }
 
+        $encryptedData = urlencode($this->directCheckout->encryptCreditCard());
+
         $body = http_build_query([
             "publicToken" => $this->publicToken,
-            "encryptedData" => urlencode($this->directCheckout->encryptCreditCard())
+            "encryptedData" => $encryptedData
         ]);
 
         $headers = [

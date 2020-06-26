@@ -309,31 +309,11 @@ class CreditCard
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function stringDataEncode()
+    public function __toString()
     {
-        $array = [];
-        $cardDataString = json_encode($this->getThisArray());
-        for ($i = 0; $i < strlen($cardDataString); $i++) {
-            $array[$i] = $this->getUtf8CharCode($cardDataString[$i]);
-        }
-        return json_encode($array); // return (new JunoEncode())->doEncode($array);
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param string $string
-     * @return integer
-     */
-    public function getUtf8CharCode($string)
-    {
-        try {
-            return unpack('V', iconv('UTF-8', 'UCS-4LE', $string))[1];
-        } catch (\Exception $exeption) {
-            return 0;
-        }
+        return json_encode($this->getThisArray());
     }
 
     /**
