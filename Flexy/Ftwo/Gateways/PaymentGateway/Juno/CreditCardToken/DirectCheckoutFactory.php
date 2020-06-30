@@ -164,7 +164,7 @@ class DirectCheckoutFactory
         $headers = [
             "content-type" => "application/x-www-form-urlencoded"
         ];
-
+        
         $response = $this->client->request(
             'POST',
             "{$this->getUrl()}get-credit-card-hash.json",
